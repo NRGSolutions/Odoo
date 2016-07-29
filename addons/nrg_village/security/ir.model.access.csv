@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nrg_village,nrg.village crm user,nrg_village.model_nrg_village,base.group_user,1,1,1,1
+access_nrg_village_event,nrg.village.event crm user,nrg_village.model_nrg_village_event,base.group_user,1,1,1,1
+access_nrg_village_event_type,nrg.village.event.type crm user,nrg_village.model_nrg_village_event_type,base.group_user,1,1,1,1
+access_nrg_village_province,nrg.village.province crm user,nrg_village.model_nrg_village_province,base.group_user,1,1,1,1
+access_nrg_village_district,nrg.village.district crm user,nrg_village.model_nrg_village_district,base.group_user,1,1,1,1
+access_nrg_village_commune,nrg.village.commune crm user,nrg_village.model_nrg_village_commune,base.group_user,1,1,1,1

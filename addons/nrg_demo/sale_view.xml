@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<!-- Customize form of sale.order -->
+		<!-- Add "Is Demo" checkbox -->
+		<record id="view_order_form_inherited_demo" model="ir.ui.view">
+			<field name="name">Quotation with Demo</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="before">
+					<group string="[NRG] Demo Process">
+						<field name="nrg_demo_is_demo" />
+					</group>
+				</xpath>
+			</field>
+		</record>
+		
+		<!-- Customize tree of sale.order -->
+		<!-- Add "Is Demo" column -->
+		<record id="view_order_tree_inherited_demo" model="ir.ui.view">
+			<field name="name">Sale Order Tree for Demo</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_tree" />
+			<field name="arch" type="xml">
+				<tree position="inside">
+					<field name="nrg_demo_is_demo" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

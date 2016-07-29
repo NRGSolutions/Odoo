@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Customized view of res.usres -->
+		<record id="view_users_form_inherited" model="ir.ui.view">
+			<field name="name">Users with ACL</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="base.view_users_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="before">
+					<group string="[NRG] ACL Management">
+						<field name="nrg_acl_warehouse_ids" />
+						<field name="nrg_acl_location_ids" />
+<!-- 						<field name="nrg_acl_village_ids" /> -->
+					</group>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

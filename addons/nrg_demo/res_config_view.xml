@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<!-- Customize form of account.config.settings -->
+		<!-- Add settings to specify journals. -->
+		<record id="view_account_config_settings_inherited_demo" model="ir.ui.view">
+			<field name="name">demo settings</field>
+			<field name="model">account.config.settings</field>
+			<field name="inherit_id" ref="account.view_account_config_settings" />
+			<field name="arch" type="xml">
+				<form position="inside">
+					<group string="[NRG] Demo Process">
+						<field name="nrg_demo_normal_journal_id" class="oe_inline" />
+						<field name="nrg_demo_journal_id" class="oe_inline" />
+					</group>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

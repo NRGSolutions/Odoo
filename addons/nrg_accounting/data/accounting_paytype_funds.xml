@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Define payment types (nrg.accounting.paytype) -->
+		<record model="nrg.accounting.paytype.fund" id="nrg_accounting_default_paytype_fund_cmf">
+			<field name="name">CMF</field>
+		</record>
+	</data>
+</openerp>

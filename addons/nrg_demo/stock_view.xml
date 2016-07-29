@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Customize form view of stock.quant -->
+		<record id="view_stock_quant_form_inherited_demo" model="ir.ui.view">
+			<field name="name">Quant for Demo</field>
+			<field name="model">stock.quant</field>
+			<field name="inherit_id" ref="stock.view_stock_quant_form" />
+			<field name="arch" type="xml">
+
+				<xpath expr="//group[field[@name='history_ids']]" position="after">
+					<group string="[NRG] Demo Process">
+						<group>
+							<field name="nrg_demo_is_demo" />
+						</group>
+<!-- 						<group> -->
+<!-- 							<button  -->
+<!-- 								name="action_nrg_demo_to_sale"  -->
+<!-- 								type="object" -->
+<!-- 								string="Demo to Sale"  -->
+<!-- 								attrs="{'invisible':[('nrg_demo_is_demo', '=', False)]}"  -->
+<!-- 								class="btn-primary" /> -->
+<!-- 						</group> -->
+					</group>
+				</xpath>
+				
+			</field>
+		</record>
+		
+		<!-- Customizing tree view of stock.quant -->
+		<!-- Add "Is Demo" column. -->
+		<record id="view_stock_quant_tree_inherited_demo" model="ir.ui.view">
+			<field name="name">Quant Tree for Demo</field>
+			<field name="model">stock.quant</field>
+			<field name="inherit_id" ref="stock.view_stock_quant_tree" />
+			<field name="arch" type="xml">
+				<tree position="inside">
+					<field name="nrg_demo_is_demo" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="quant_search_view_inherited_demo" model="ir.ui.view">
+			<field name="name">[NRG] Stock Quant Filter for Demo</field>
+			<field name="model">stock.quant</field>
+			<field name="inherit_id" ref="stock.quant_search_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//group/filter[@name='locationgroup']" position="before">
+					<filter name="nrg_demo_filter" string="[NRG] Is Demo"
+							domain="[('nrg_demo_is_demo', '=', True)]" />
+				</xpath>
+			</field>
+		</record>
+		
+		<!-- Add an action item of "Demo to Sale" -->
+		<record id="action_nrg_demo_to_sale" model="ir.actions.server">
+			<field name="name">Demo to Sale</field>
+			<field name="condition">True</field>
+			<field name="type">ir.actions.server</field>
+			<field name="model_id" ref="model_stock_quant" />
+			<field name="state">code</field>
+			<field name="code">
+				self.action_nrg_demo_to_sale(cr, uid, context.get('active_ids', []), context=context)
+			</field>
+		</record>
+		<record id="action_value_nrg_demo_to_sale" model="ir.values">
+			<field name="name">Demo to Sale Action Value</field>
+			<field name="action_id" ref="action_nrg_demo_to_sale" />
+			<field name="value" eval="'ir.actions.server,' + str(ref('action_nrg_demo_to_sale'))" />
+			<field name="key">action</field>
+			<field name="model_id" ref="model_stock_quant" />
+			<field name="model">stock.quant</field>
+			<field name="key2">client_action_multi</field>
+		</record>
+
+	</data>
+</openerp>

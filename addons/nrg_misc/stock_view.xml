@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Customize form view of stock.quant -->
+		<record id="view_stock_quant_form_inherited_misc" model="ir.ui.view">
+			<field name="name">Quant for NRG Misc</field>
+			<field name="model">stock.quant</field>
+			<field name="inherit_id" ref="stock.view_stock_quant_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//group[field[@name='history_ids']]" position="after">
+					<group string="[NRG] Misc">
+						<group>
+							<field name="nrg_misc_ref_proc_group_name" />
+						</group>
+					</group>
+				</xpath>
+				
+			</field>
+		</record>
+
+		<!-- Override the act_window of Inventory Valuation -->
+		<record id="stock.quantsact" model="ir.actions.act_window">
+			<field name="name">Quants (NRG Customized View)</field>
+			<field name="res_model">stock.quant</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_locationgroup':1,
+								   'search_default_productgroup':1}</field>
+			<field name="help">This analysis gives you a fast overview on the current stock level of your products and their current inventory value.</field>
+		</record>
+		
+		<!-- Customize default search options for stock.quant -->
+		<record id="quant_search_view_inherited_misc" model="ir.ui.view">
+			<field name="name">Stock Quant Filter for NRG Apps</field>
+			<field name="model">stock.quant</field>
+			<field name="inherit_id" ref="stock.quant_search_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//group/filter[@name='locationgroup']" position="before">
+					<filter name="nrg_proc_group" string="[NRG] Procurement Group"
+							context="{'group_by': 'nrg_misc_ref_proc_group_name'}" />
+					<separator />
+				</xpath>
+				<xpath expr="//group/filter[@name='internal_loc']" position="before">
+					<filter name="nrg_proc_group_sale_order" string="[NRG] Sale Order"
+							domain="[('nrg_misc_ref_proc_group_name', '=like', 'SO%')]" />
+					<separator />
+					<filter name="nrg_customer_loc" string="[NRG] Customer Locations" 
+							domain="[('location_id.usage', '=', 'customer')]" />
+				</xpath>
+			</field>
+		</record>
+		
+		<!-- Custom filter for kit traceability -->
+		<record id="nrg_misc_filter_stock_quant_sale_order" model="ir.filters">
+			<field name="name">[NRG] Group By Order</field>
+			<field name="model_id">stock.quant</field>
+			<field name="domain">[('nrg_misc_ref_proc_group_name', '=like', 'SO%')]</field>
+			<field name="context">{'group_by': 'nrg_misc_ref_proc_group_name'}</field>
+			<field name="is_default" eval="False" />
+			<field name="user_id" eval="False" />
+		</record>
+		
+		
+		<!-- Make procurement group editable for traceability -->
+		<record id="view_picking_form_inherited_misc" model="ir.ui.view">
+			<field name="name">Custom Stock Picking Form</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='group_id']" position="replace">
+					<field name="group_id" attrs="{'readonly': 0}" />
+<!-- 					<field name="group_id" attrs="{'readonly': [('id', '>', 0)]}" /> -->
+<!-- 					<field name="id" invisible="1" /> -->
+				</xpath>
+			</field>
+		</record>
+		
+		<!-- Make the menu of "All Transfers" visible. -->
+		<record id="stock.menu_stock_warehouse_mgmt" model="ir.ui.menu">
+			<field name="groups_id" eval="[(6, 0, [ref('stock.group_stock_manager'), ref('stock.group_stock_user')])]" />
+		</record>
+		
+		<!-- Add a filter by customer -->
+		<record id="view_picking_internal_search_inherited_misc" model="ir.ui.view">
+			<field name="name">[NRG] Stock Picking</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_internal_search" />
+			<field name="arch" type="xml">
+				<xpath expr="//group/*[1]" position="before">
+					<filter name="customer" string="[NRG] Customer" 
+							domain="[]" context="{'group_by': 'partner_id'}" />
+					<separator />
+				</xpath>
+			</field>
+		</record>
+		
+		
+		<!-- Just change the label -->
+		<record id="stock.menu_stock_procurement_action" model="ir.ui.menu">
+			<field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]" />
+		</record>
+		<menuitem id="nrg_misc_menu_procurement_action" 
+				  action="procurement.procurement_action"
+				  parent="stock.menu_warehouse_report"
+				  sequence="149"
+				  groups="stock.group_stock_manager,stock.group_stock_user" />
+				  
+	</data>
+</openerp>

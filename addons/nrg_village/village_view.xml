@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<!-- Define form of nrg.village -->
+		<record id="view_form_nrg_village" model="ir.ui.view">
+			<field name="name">Village Form</field>
+			<field name="model">nrg.village</field>
+			<field name="arch" type="xml">
+				<form string="Village">
+					<header> <!-- Buttons and status widget -->
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button class="oe_stat_button o_res_partner_tip_opp" 
+									type="object"
+									name="schedule_meeting"
+									icon="fa-calendar"
+									context="">
+								<field string="Meetings" name="meeting_count" widget="statinfo" />
+							</button>
+							<button class="oe_stat_button"
+									type="object"
+									name="sale_order"
+									icon="fa-usd">
+								<field string="Sales" name="sale_order_count" widget="statinfo" />
+							</button>
+						</div>
+						
+						<group name="group_top">
+							<group name="group_left">
+								<field name="province" options="{'no_create_edit': 1}" />
+								<field name="district" options="{'no_create_edit': 1}" />
+								<field name="commune" options="{'no_create_edit': 1}" />
+								<field name="name" />
+							</group>
+							<group name="group_right">
+								<field name="is_active" />
+								<field name="num_of_households" />
+								<field name="num_of_households_w_solar" />
+							</group>
+						</group>
+						<group name="group_bottom">
+							<separator colspan="2" string="Leads &amp; Customers" />
+							<field name="village_leads" widget="one2many_list"
+								   context="{'default_nrg_village': active_id}">
+								<tree>
+									<field name="nrg_village_is_keyperson" />
+									<field name="name" />
+								</tree>
+							</field>
+							<field name="village_customers" widget="one2many_list"
+								   context="{'default_nrg_village': active_id}">
+								<tree>
+									<field name="nrg_village_is_keyperson" />
+									<field name="name" />
+<!-- 									<field name="phone" /> -->
+									<!-- Added by Sejin 
+									<field name="nrg_customer_num_of_ppl" />
+									<!--
+									<field name="nrg_customer_solution" />
+									<field name="nrg_customer_status" />
+								-->
+								</tree>
+							</field>
+							<separator string="Village Events" colspan="2" />
+							<field name="events" widget="one2many_list"
+								   context="{'default_village': active_id}">
+								<tree>
+									<field name="type" />
+									<field name="date" />
+									<field name="name" />
+									<field name="num_of_people" />
+								</tree>
+							</field>
+							<separator colspan="2" string="Memo" />
+							<field name="note" />
+						</group>
+						<group>
+							<label string="Images" />
+							<div align="left">
+								<field name="image1" widget="image" />
+								<field name="image2" widget="image" />
+								<field name="image3" widget="image" />
+							</div>
+						</group>
+						
+					</sheet>
+				</form>
+				<!-- History and communication: --><!-- TODO -->
+			</field>
+		</record>
+		
+		<record id="view_search_nrg_village" model="ir.ui.view">
+			<field name="name">Village Search</field>
+			<field name="model">nrg.village</field>
+			<field eval="10" name="priority" />
+			<field name="arch" type="xml">
+				<search string="Village">
+					<field name="name" />
+					<group expand="0" string="Filters">
+						<filter name="activefilter" string="Is Active" domain="[('is_active', '=', True)]" />
+					</group>
+					<group expand="0" string="Group by...">
+						<filter string="Province" name="provincegroup" context="{'group_by': 'province'}" />
+						<filter string="District" name="districtgroup" context="{'group_by': 'district'}" />
+						<filter string="Commune" name="communegroup" context="{'group_by': 'commune'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Action to open Village list -->
+		<record id="action_nrg_village" model="ir.actions.act_window">
+			<field name="name">Villages</field>
+			<field name="res_model">nrg.village</field>
+			<field name="context">{'search_default_activefilter':1, 
+								   'search_default_provincegroup':1, 
+								   'search_default_districtgroup':1,
+								   'search_default_communegroup':1}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+						Click to define a village.
+				</p>
+			</field>
+		</record>
+
+		<!-- Menu item to open Village list -->
+		<menuitem id="menu_nrg_village" name="[NRG] Villages" parent="base.menu_sales"
+			sequence="0" action="action_nrg_village" />
+
+
+
+		<record id="action_village_2_sale_order" model="ir.actions.act_window">
+			<field name="name">Quotations and Sales for Village</field>
+			<field name="res_model">sale.order</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,graph</field>
+<!-- 			<field name="context">{'search_default_partner_id': active_id, 'show_sale': True}</field> -->
+			<field name="groups_id" eval="[(4, ref('base.group_sale_salesman'))]" />
+			<field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+              </p><p>
+                Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the Invoice and collect the Payment.
+              </p><p>
+                Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the Sales Order list.
+              </p>
+			</field>
+		</record>
+		
+
+
+		<!-- Define form of nrg.village.province -->
+		<record id="view_form_nrg_village_province" model="ir.ui.view">
+			<field name="name">Province From</field>
+			<field name="model">nrg.village.province</field>
+			<field name="arch" type="xml">
+				<form string="Province">
+					<group>
+						<field name="name" required="1" />
+						<field name="child_districts" context="{'default_parent_province': active_id}" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Define form of nrg.village.district -->
+		<record id="view_form_nrg_village_district" model="ir.ui.view">
+			<field name="name">District From</field>
+			<field name="model">nrg.village.district</field>
+			<field name="arch" type="xml">
+				<form string="District">
+					<group>
+						<field name="parent_province" readonly="1"/>
+						<field name="name" required="1" />
+						<field name="child_communes" context="{'default_parent_district': active_id}" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Define form of nrg.village.commune -->
+		<record id="view_form_nrg_village_commune" model="ir.ui.view">
+			<field name="name">Commune From</field>
+			<field name="model">nrg.village.commune</field>
+			<field name="arch" type="xml">
+				<form string="Commune">
+					<group>
+						<field name="parent_district" readonly="1" />
+						<field name="name" required="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Define form of nrg.village.event -->
+		<record id="view_form_nrg_village_event" model="ir.ui.view">
+			<field name="name">Village Event Form</field>
+			<field name="model">nrg.village.event</field>
+			<field name="arch" type="xml">
+				<form string="Village Event">
+					<group>
+						<group>
+							<field name="village" readonly="1"/>
+							<field name="type" required="1" options="{'no_create_edit': 1}"/>
+							<field name="date" required="1" />
+						</group>
+						<group>
+							<field name="name" required="1" />
+							<field name="num_of_people" />
+						</group>
+					</group>
+					<group>
+						<field name="note" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<menuitem id="base.menu_nrg_village_config" name="[NRG] Village Management"
+				  parent="base.menu_sale_config" sequence="10" />
+
+
+		<!-- Configuration for nrg.village.event.type -->
+		<record id="action_nrg_village_event_type" model="ir.actions.act_window">
+			<field name="name">Village Event Type</field>
+			<field name="res_model">nrg.village.event.type</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to define a village event type.
+				</p>
+			</field>
+		</record>
+		<menuitem id="menu_village_event_type" action="action_nrg_village_event_type"
+				  parent="base.menu_nrg_village_config" sequence="20" />
+		
+		<!-- Configuration for nrg.village.province -->
+		<record id="action_nrg_village_province" model="ir.actions.act_window">
+			<field name="name">Province</field>
+			<field name="res_model">nrg.village.province</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+						Click to define a province.
+				</p>
+			</field>
+		</record>
+		<menuitem id="menu_village_province" action="action_nrg_village_province"
+				  parent="base.menu_nrg_village_config" sequence="10" />
+		
+	</data>
+</openerp>

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<!-- Customize form of sale.order -->
+		<!-- Add "Payment Type" -->
+		<record id="view_order_form_inherited_accounting" model="ir.ui.view">
+			<field name="name">Quotation with Payment Method</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="before">
+					<group string="[NRG] Payment Method">
+						<field name="nrg_accounting_ref_paytype_isfund" readonly="1" invisible="1" /><!-- Internal reference field -->
+						<field name="nrg_accounting_paytype" 
+							   options="{'no_create_edit': 1}" />
+						<field name="nrg_accounting_paytype_fund" 
+							   options="{'no_create_edit': 1}" 
+							   attrs="{'invisible': [('nrg_accounting_ref_paytype_isfund', '=', False)], 'required': [('nrg_accounting_ref_paytype_isfund', '=', True)]}" />
+					</group>
+				</xpath>
+			</field>
+		</record>
+
+		
+		<menuitem id="base.menu_nrg_accounting" name="[NRG] Accounting"
+				  parent="base.menu_sale_config" sequence="30" />
+				  
+		<!-- Configuration for nrg.village.paytype -->
+		<record id="action_nrg_accounting_paytype" model="ir.actions.act_window">
+			<field name="name">Payment Methods</field>
+			<field name="res_model">nrg.accounting.paytype</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to define a payment method.
+				</p>
+			</field>
+		</record>
+		<!-- Define tree of nrg.accounting.paytype -->
+		<record id="view_tree_nrg_accounting_paytype" model="ir.ui.view">
+			<field name="name">Payment Type Tree</field>
+			<field name="model">nrg.accounting.paytype</field>
+			<field name="arch" type="xml">
+				<tree string="Payment Type">
+					<field name="name" />
+					<field name="is_require_fund" string="Require Fund" />
+				</tree>
+			</field>
+		</record>
+		<menuitem id="menu_accounting_paytype" action="action_nrg_accounting_paytype"
+				  parent="base.menu_nrg_accounting" sequence="31" />
+		
+		<!-- Configuration for nrg.village.paytype.fund -->
+		<record id="action_nrg_accounting_paytype_fund" model="ir.actions.act_window">
+			<field name="name">Funds</field>
+			<field name="res_model">nrg.accounting.paytype.fund</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to define a fund.
+				</p>
+			</field>
+		</record>
+		<menuitem id="menu_accounting_paytype_fund" action="action_nrg_accounting_paytype_fund"
+				  parent="base.menu_nrg_accounting" sequence="32" />
+	</data>
+</openerp>
+ 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Change visibility of "Confirm Order" -->
+		<record id="view_order_form_inherited_acl" model="ir.ui.view">
+			<field name="name">[NRG] Sale Order for ACL</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='action_confirm'][@states='draft']" position="attributes">
+					<attribute name="groups">base.group_sale_manager</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_confirm'][@states='sent']" position="attributes">
+					<attribute name="groups">base.group_sale_manager</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

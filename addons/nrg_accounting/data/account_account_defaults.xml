@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Define default accounts (account.account) -->
+		<record model="account.account" id="nrg_accounting_account_default_payable">
+			<field name="name">DEFAULT PAYABLE</field>
+			<field name="code">DEF_PAY</field>
+			<field name="user_type_id" ref="account.data_account_type_payable" />
+			<field name="reconcile" eval="True" />
+		</record>
+		<record model="account.account" id="nrg_accounting_account_default_receivable">
+			<field name="name">DEFAULT RECEIVABLE</field>
+			<field name="code">DEF_RECV</field>
+			<field name="user_type_id" ref="account.data_account_type_receivable" />
+			<field name="reconcile" eval="True" />
+		</record>
+	</data>
+</openerp>

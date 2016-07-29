@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Define payment types (nrg.accounting.paytype) -->
+		<record model="nrg.accounting.paytype" id="nrg_accounting_default_paytype_cash">
+			<field name="name">Cash</field>
+			<field name="is_require_fund" eval="False" />
+		</record>
+		<record model="nrg.accounting.paytype" id="nrg_accounting_default_paytype_loan">
+			<field name="name">Loan</field>
+			<field name="is_require_fund" eval="True" />
+		</record>
+		<record model="nrg.accounting.paytype" id="nrg_accounting_default_paytype_payg">
+			<field name="name">PAYG</field>
+			<field name="is_require_fund" eval="False" />
+		</record>
+		<record model="nrg.accounting.paytype" id="nrg_accounting_default_paytype_cash_loan">
+			<field name="name">Cash and Loan</field>
+			<field name="is_require_fund" eval="True" />
+		</record>
+		<record model="nrg.accounting.paytype" id="nrg_accounting_default_paytype_cash_payg">
+			<field name="name">Cash and PAYG</field>
+			<field name="is_require_fund" eval="False" />
+		</record>
+	</data>
+</openerp>

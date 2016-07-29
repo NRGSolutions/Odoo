@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nrg_payg,nrg.payg stock user,nrg_payg.model_nrg_payg,stock.group_stock_user,1,1,1,1
+access_nrg_payg_id,nrg.payg.id stock user,nrg_payg.model_nrg_payg_id,stock.group_stock_user,1,1,1,1

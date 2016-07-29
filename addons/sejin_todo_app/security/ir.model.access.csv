@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sejin_todo_app_sejin_todo_app,sejin_todo_app.sejin_todo_app,model_sejin_todo_app_sejin_todo_app,,1,0,0,0

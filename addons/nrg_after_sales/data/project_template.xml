@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Default stages (project.task.type) -->
+		<record model="project.task.type" id="nrg_asp_templ_task_type_todo">
+			<field name="name">ToDo</field>
+		</record>
+		<record model="project.task.type" id="nrg_asp_templ_task_type_doing">
+			<field name="name">Doing</field>
+		</record>
+		<record model="project.task.type" id="nrg_asp_templ_task_type_done">
+			<field name="name">Done</field>
+		</record>
+		
+		<!-- Default tasks (project.task) -->
+		<!-- Installation -->
+		<record model="project.task" id="nrg_asp_templ_task_install">
+			<field name="name">Installation</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">3</field>
+			<field name="nrg_asp_incharge">technician</field>
+		</record>
+		<!-- Scheduled maintenance -->
+		<record model="project.task" id="nrg_asp_templ_task_schdl_3d">
+			<field name="name">After 3 Days</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">6</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_1w">
+			<field name="name">After 1 Weeks</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">10</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_1m">
+			<field name="name">After 1 Months</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">33</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		
+		<!-- Default project (project.project) -->
+		<record model="project.project" id="nrg_asp_templ_project">
+			<field name="name">TEMPLATE_AFTER_SALES_PROJECT</field>
+			<field name="user_id" ref="base.user_root" />
+			<field name="task_ids" 
+				   eval="[(6,0,[
+				   		ref('nrg_asp_templ_task_install'),
+				   		ref('nrg_asp_templ_task_schdl_3d'),
+				   		ref('nrg_asp_templ_task_schdl_1w'),
+				   		ref('nrg_asp_templ_task_schdl_1m'),
+				   ])]" />
+			<field name="type_ids"
+				   eval="[(6,0,[
+				   		ref('nrg_asp_templ_task_type_todo'),
+				   		ref('nrg_asp_templ_task_type_doing'),
+				   		ref('nrg_asp_templ_task_type_done'),
+				   ])]" />
+			<field name="nrg_asp_is_template" eval="True" />
+		</record>
+	</data>
+</openerp>

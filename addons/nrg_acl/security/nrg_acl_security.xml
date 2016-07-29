@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<!-- 	<data noupdate="0"> -->
+	<data>
+		
+<!-- 		<record id="nrg_acl.group_sale_manager" model="res.groups"> -->
+<!-- 			<field name="name">[NRG] Sales Manager</field> -->
+<!-- 			<field name="category_id" ref="base.module_category_sales_management" /> -->
+<!-- 			<field name="implied_ids" eval="[(4, ref('base.group_system'))]" /> -->
+<!-- 			<field name="comment"></field> -->
+<!-- 		</record> -->
+
+		<!-- ACL for stock.location -->
+<!-- 		<record id="nrg_acl_stock_location" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] ACL for Location</field> -->
+<!-- 			<field name="model_id" ref="stock.model_stock_location" /> -->
+<!-- 			<field name="domain_force"> -->
+<!-- 				[('id', 'in', [l.id for l in user.nrg_acl_location_ids])] -->
+<!-- 			</field> -->
+<!-- 			<field name="groups" eval="[(4, ref('base.group_user'))]" /> -->
+<!-- 		</record> -->
+		<!-- ACL for stock.warehouse -->
+<!-- 		<record id="nrg_acl_stock_warehouse" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] ACL for Warehouse</field> -->
+<!-- 			<field name="model_id" ref="stock.model_stock_warehouse" /> -->
+<!-- 			<field name="domain_force"> -->
+<!-- 				[('id', 'in', [w.id for w in user.nrg_acl_warehouse_ids])] -->
+<!-- 			</field> -->
+<!-- 			<field name="groups" eval="[(4, ref('base.group_user'))]" /> -->
+<!-- 		</record> -->
+
+
+		<!-- ACL for stock.quant -->
+		<record id="nrg_acl_stock_quant" model="ir.rule">
+			<field name="name">[NRG] ACL for Stock Quant</field>
+			<field name="model_id" ref="stock.model_stock_quant" />
+			<field name="domain_force">
+				[('location_id', 'in', [l.id for l in user.nrg_acl_location_ids])]
+			</field>
+			<field name="groups" eval="[(4, ref('base.group_user'))]" />
+		</record>
+		<!-- ACL for stock.picking.type -->
+		<record id="nrg_acl_stock_picking_type" model="ir.rule">
+			<field name="name">[NRG] ACL for Picking Type</field>
+			<field name="model_id" ref="stock.model_stock_picking_type" />
+			<field name="domain_force">
+				[('warehouse_id', 'in', [w.id for w in user.nrg_acl_warehouse_ids])]
+			</field>
+			<field name="groups" eval="[(4, ref('base.group_user'))]" />
+		</record>
+
+
+		<!-- ACL for project.task for ptoject user -->
+<!-- 		<record id="nrg_acl_project_task" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] ACL for Project Task</field> -->
+<!-- 			<field name="model_id" ref="project.model_project_task" /> -->
+<!-- 			<field name="domain_force"> -->
+<!-- 				[('user_id', '=', user.id)] -->
+<!-- 			</field> -->
+<!-- 			<field name="groups" eval="[(4, ref('project.group_project_user'))]" /> -->
+<!-- 		</record> -->
+		
+		<!-- ACL for project.task for ptoject user -->
+<!-- 		<record id="nrg_acl_project_project" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] ACL for Project</field> -->
+<!-- 			<field name="model_id" ref="project.model_project_project" /> -->
+<!-- 			<field name="domain_force"> -->
+<!-- 				[('nrg_asp_is_template', '=', 0)] -->
+<!-- 			</field> -->
+<!-- 			<field name="groups" eval="[(4, ref('project.group_project_user'))]" /> -->
+<!-- 		</record> -->
+
+
+		<!-- ACL for own customers -->
+<!-- 		<record id="nrg_acl_own_customer" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] Own Customers</field> -->
+<!-- 			<field name="model_id" ref="base.model_res_partner" /> -->
+<!-- 			<field name="domain_force">[('user_id', '=', user.id)]</field> -->
+<!-- 			<field name="groups" eval="[(4, ref('nrg_acl.group_sale_manager'))]" /> -->
+<!-- 		</record> -->
+
+
+
+
+		<!-- ACL for own customers -->
+<!-- 		<record id="nrg_acl_crm_rule_personal_customer" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] Personal Customers</field> -->
+<!-- 			<field name="model_id" ref="base.model_res_partner" /> -->
+<!-- 			<field name="domain_force">[('user_id', '=', user)]</field> -->
+<!-- 			<field name="domain_force">[(1, '=', user.id)]</field> -->
+<!-- 			<field name="perm_read" eval="1" /> -->
+<!-- 			<field name="groups" eval="[(4, ref('base.group_sale_manager'))]" /> -->
+<!-- 			<field name="groups" eval="[(4, ref('base.group_system'))]" /> -->
+<!-- 		</record> -->
+
+<!-- 		<record id="nrg_acl_temp" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] RES USERS</field> -->
+<!-- 			<field name="model_id" ref="base.model_res_users" /> -->
+<!-- 			<field name="domain_force">[1, '=', 1]</field> -->
+<!-- 			<field name="groups" eval="[(4, ref('base.group_sale_manager'))]" /> -->
+<!-- 		</record> -->
+
+		<!-- ACL for all customers -->
+<!-- 		<record id="nrg_acl_crm_rule_all_customer" model="ir.rule"> -->
+<!-- 			<field name="name">[NRG] All Customers</field> -->
+<!-- 			<field name="model_id" ref="base.model_res_partner" /> -->
+<!-- 			<field name="domain_force">[('nrg_village', 'in', [v.id for v in user.nrg_acl_village_ids])]</field> -->
+<!-- 			<field name="domain_force">[('nrg_village', 'in', [user.nrg_acl_village_ids])]</field>			 -->
+<!-- 	TEMP	<field name="groups" eval="[(4, ref('base.group_sale_manager'))]" /> -->
+<!-- 			<field name="groups" eval="[(4, ref('base.group_sale_manager'))]" /> -->
+<!-- 		</record> -->
+	</data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Customize form of account.config.settings -->
+		<record id="view_account_config_settings_inherited_accounting" model="ir.ui.view">
+			<field name="name">accounting settings</field>
+			<field name="model">account.config.settings</field>
+			<field name="inherit_id" ref="account.view_account_config_settings" />
+			<field name="arch" type="xml">
+				<form position="inside">
+					<group string="[NRG] Accounting">
+						<field name="nrg_accounting_default_account_receivable" class="oe_inline" />
+						<field name="nrg_accounting_default_account_payable" class="oe_inline" />
+					</group>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

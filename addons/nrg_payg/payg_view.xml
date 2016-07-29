@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<!-- Define form of nrg.payg -->
+		<record id="view_form_nrg_payg" model="ir.ui.view">
+			<field name="name">PAYG Form</field>
+			<field name="model">nrg.payg</field>
+			<field name="arch" type="xml">
+				<form string="PAYG Codes">
+					<sheet>
+						<group>
+							<field name="nrg_payg_is_active" />
+							<field name="nrg_payg_name" />
+							<field name="nrg_payg_date" />
+							<field name="nrg_payg_client" />
+							<field name="nrg_payg_payment" />
+							<separator string="Codes" colspan="2" />
+							<field name="nrg_payg_initial_code" />
+							<field name="nrg_payg_unlock_code" />
+							<field name="nrg_payg_credit_codes" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!-- Define tree of nrg.payg -->
+		<record id="view_tree_nrg_payg" model="ir.ui.view">
+			<field name="name">PAYG Tree</field>
+			<field name="model">nrg.payg</field>
+			<field name="arch" type="xml">
+<!-- 				<tree string="PAYG Code Management" colors="gray:nrg_payg_is_active!=True"> -->
+				<tree string="PAYG Code Management">
+					<field name="nrg_payg_is_active" />
+					<field name="nrg_payg_name" />
+					<field name="create_date" />
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Define form of nrg.payg.id -->
+		<record id="view_form_nrg_payg_id" model="ir.ui.view">
+			<field name="name">PAYG Credit ID Form</field>
+			<field name="model">nrg.payg.id</field>
+			<field name="arch" type="xml">
+				<form string="PAYG Credit ID" create="false" edit="false">
+					<field name="nrg_payg_id_id" />
+				</form>
+			</field>
+		</record>
+		<!-- Define tree of nrg.payg.id -->
+		<record id="view_tree_nrg_payg_id" model="ir.ui.view">
+			<field name="name">PAYG Credit IDs Tree</field>
+			<field name="model">nrg.payg.id</field>
+			<field name="arch" type="xml">
+				<tree string="Credit IDs" editable="bottom" colors="gray:nrg_payg_id_paid_date!=False">
+					<field name="nrg_payg_id_index" />
+					<field name="nrg_payg_id_id" />
+					<field name="nrg_payg_id_paid_date" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

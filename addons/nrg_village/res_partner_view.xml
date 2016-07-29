@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<!-- Customize form of res.partner -->
+		<record id="view_partner_form_inherited_village" model="ir.ui.view">
+			<field name="name">Partner Form with Village</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="before">
+					<group string="[NRG] Village Management">
+						<group>
+							<field name="nrg_village" />
+							<field name="nrg_village_is_keyperson" />
+							<!-- Three lines added by Sejin 
+							<field name="nrg_customer_num_of_ppl" />
+							<!--
+							<field name="nrg_customer_solution" />
+							<field name="nrg_customer_status" /> -->
+						</group>
+						<group>
+							<field name="nrg_village_ref_village_place" nolabel="1" />
+						</group>
+					</group>
+					<group>
+						<label string="Images" />
+						<div align="left">
+							<field name="nrg_village_image1" widget="image" />
+							<field name="nrg_village_image2" widget="image" />
+							<field name="nrg_village_image3" widget="image" />
+						</div>
+					</group>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="view_res_partner_filter_inherited_village" model="ir.ui.view">
+			<field name="name">[NRG] Partner Filter</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter" />
+			<field name="arch" type="xml">
+				<xpath expr="/search" position="inside">
+					<field name="nrg_village" string="[NRG] Villages" />
+					<field name="nrg_village_ref_village_place" string="[NRG] Addresses" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

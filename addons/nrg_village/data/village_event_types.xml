@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Define village event types (nrg.village.event.type) -->
+		<record model="nrg.village.event.type" id="nrg_village_defualt_eventtype_group">
+			<field name="name">Group Meeting</field>
+		</record>
+		<record model="nrg.village.event.type" id="nrg_village_defualt_eventtype_chief">
+			<field name="name">Village Chief Meeting</field>
+		</record>
+		<record model="nrg.village.event.type" id="nrg_village_defualt_eventtype_night">
+			<field name="name">Night Time Meeting</field>
+		</record>
+	</data>
+</openerp>
