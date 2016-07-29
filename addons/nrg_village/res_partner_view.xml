@@ -13,7 +13,9 @@
 						<group>
 							<field name="nrg_village" />
 							<field name="nrg_village_is_keyperson" />
-
+							<!-- Florian
+							<field name="nrg_village_customer_number" />
+							-->
 						</group>
 						<group>
 							<field name="nrg_village_ref_village_place" nolabel="1" />
