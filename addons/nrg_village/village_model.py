@@ -6,9 +6,10 @@ class NrgVillage(models.Model):
     _name = 'nrg.village'
     _description = ''
 
+    #Part of the code commented because of some bug
     province = fields.Many2one('nrg.village.province', 'Province')
-    district = fields.Many2one('nrg.village.district', 'District', domain="[('parent_province', '=', province)]")
-    commune = fields.Many2one('nrg.village.commune', 'Commune', domain="[('parent_district', '=', district)]")
+    district = fields.Many2one('nrg.village.district', 'District') #, domain="[('parent_province', '=', province)]")
+    commune = fields.Many2one('nrg.village.commune', 'Commune') #, domain="[('parent_district', '=', district)]")
     name = fields.Char('Village', required=True, index=True)
     
     is_active = fields.Boolean('Is Active', default=True)

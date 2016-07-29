@@ -29,10 +29,10 @@
 						
 						<group name="group_top">
 							<group name="group_left">
-								<field name="province" options="{'no_create_edit': 1}" />
-								<field name="district" options="{'no_create_edit': 1}" />
-								<field name="commune" options="{'no_create_edit': 1}" />
 								<field name="name" />
+								<field name="commune" options="{'no_create_edit': 1}" />
+								<field name="district" options="{'no_create_edit': 1}" />
+								<field name="province" options="{'no_create_edit': 1}" />
 							</group>
 							<group name="group_right">
 								<field name="is_active" />
