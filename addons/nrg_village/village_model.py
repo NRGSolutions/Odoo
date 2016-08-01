@@ -42,7 +42,7 @@ class NrgVillage(models.Model):
     sale_order_count = fields.Integer(compute='_compute_sale_order_count')
 
     @api.one
-    @api.constrains('num_of_households_using_solar')
+    @api.constrains('num_of_households_using_solar', 'num_of_households')
     def _check_num_of_households_using_solar_size(self):
         if self.num_of_households_w_solar > self.num_of_households:
             raise ValidationError('Must less than total households!')
