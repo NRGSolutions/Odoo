@@ -16,9 +16,10 @@ class ExtendedSaleOrder(models.Model):
                                                states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, 
                                                domain="[('nrg_asp_is_template', '=', 1)]",
                                                help='Specify a template project which an after-sales project are created based on.')
+    # Line edited by Sejin, 08/01/2016
     nrg_asp_admin = fields.Many2one('res.users', 'Office Manager', readonly=True,
                                     states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, 
-                                    help='Specify a user as a local administrator role.')    # Don't change the variable name.
+                                    help='Specify a user as a local administrator role.', required=True)    # Don't change the variable name.
     # Line edited by Sejin, 07/29/2016
     nrg_asp_technician = fields.Many2one('res.users', 'Technician', readonly=True,
                                          states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, 
