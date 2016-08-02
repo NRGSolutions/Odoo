@@ -1,5 +1,6 @@
 # -*- config: utf-8 -*-
 from openerp import models, fields, api
+from datetime import date
 
 class ExtendedTask(models.Model):
     """ Inherits project.task and adds an reference to sale.order. """
@@ -19,7 +20,28 @@ class ExtendedTask(models.Model):
     
     nrg_asp_ref_so_warehouse = fields.Many2one('Warehouse', related="nrg_asp_sale_order.warehouse_id")
 
+    # ------------------------------------------------
+    # Line edited by Florian on 02/08/2016
+    # ------------------------------------------------
 
+    nrg_asp_delay = fields.Date('Ending date')
+    stageId = fields.Integer('Stage Name') #Needed to know the stage Id of the done status
+     
+
+
+    def write(self, cr, uid, ids, vals, context=None):
+	vals['stageId'] = vals.get('stage_id')
+        if vals.get('stage_id') == 81:  # Done's stage_id is 81 (find this with vals.get()). 
+					#Not a very good method because of the stage_id depends on when we implement the "Done" status
+					# On the AWS server it must be another number.
+					
+            vals['nrg_asp_delay'] = fields.Date.today()
+	result=super(ExtendedTask, self).write( cr, uid, ids, vals, context=context )
+	return result
+
+    # ------------------------------------------------
+    # Other functions
+    # ------------------------------------------------
     @api.one
     @api.depends('project_id')
     def _compute_is_in_template(self):
