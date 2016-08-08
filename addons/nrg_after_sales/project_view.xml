@@ -18,6 +18,8 @@
 							   attrs="{'invisible': [('nrg_asp_is_in_template', '=', False)]}" />
 						<field name="nrg_asp_is_in_template" invisible="1" />
 						<field name="id" invisible="1" />
+						<field name="nrg_asp_delay" /> 
+						<field name="stageId" /> 
 					</group>
 				</xpath>
 			</field>
