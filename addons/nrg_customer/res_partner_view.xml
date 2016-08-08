@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <!-- Customized form of res.partner to include demographics data -->
+    <!-- Author: Sejin Park, 08/05/2016 -->
+    <record id="view_partner_form_inherited_customer" model="ir.ui.view">
+      <field name="name">Partner Form with Customer Demographics</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//page" position="after">
+          <page string="Customer Demographics">
+            <group name = "group_top">
+              <group name="group_left">
+                <group string="Income">
+                  <field name="nrg_customer_primary_income"/>
+                  <field name="nrg_customer_secondary_income"/>
+                  <field name="nrg_customer_primary_income_source"/>
+                </group>
+              </group>
+              <group name="group_right">
+                <group string="House Details">
+                  <field name="nrg_customer_num_of_ppl"/>
+                  <field name="nrg_customer_num_of_rooms"/>
+                  <field name="nrg_customer_energy_spending"/>
+                  <field name="nrg_customer_cooking_tech"/>
+                  <field name="nrg_customer_cooking_fuel"/>
+                  <field name="nrg_customer_want_solar"/>
+               </group>
+              </group>
+            </group>
+            <group string="Current Appliances">
+              <field name="nrg_customer_appliances_fan"/>
+              <field name="nrg_customer_appliances_tv"/>
+              <field name="nrg_customer_appliances_radio"/>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>
