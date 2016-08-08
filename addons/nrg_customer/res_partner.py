@@ -23,7 +23,7 @@ class ExtendedPartner(models.Model):
 	# Current appliances
 	nrg_customer_appliances_fan = fields.Boolean('Fan')
 	nrg_customer_appliances_tv = fields.Boolean('TV')
-	nrg_customer_appliances_radio = fields.Boolean('Radio')
+	nrg_customer_appliances_lights = fields.Boolean('Lights')
 
 	# Number of people in the household
 	nrg_customer_num_of_ppl = fields.Integer('Number of people in the household')
@@ -31,19 +31,17 @@ class ExtendedPartner(models.Model):
 	# Number of rooms in the house
 	nrg_customer_num_of_rooms = fields.Integer('Number of rooms in the house')
 
+	# Current energy source
+	nrg_customer_energy_source = fields.Selection([('grid', 'Grid'), ('car battery', 'Car Battery'), 
+													('generator','Generator')],
+												string="Current energy source?")
 	# Energy spending per week
 	nrg_customer_energy_spending = fields.Integer('Energy spending per week')
 
 	# Main cooking technology
-	nrg_customer_cooking_tech = fields.Selection([('Option1', 'option1'), ('Option2', 'option2')],
+	nrg_customer_cooking_tech = fields.Selection([('charcoal stove', 'Charcoal Stove'), ('LPG', 'LPG')],
 												string="Main cooking technology?")
-
-	# Fuel for cooking
-	nrg_customer_cooking_fuel = fields.Selection([('Option1', 'option1'), ('Option2', 'option2')], 
-												string="Fuel for cooking?")
 
 	# Do they want solar? 
 	nrg_customer_want_solar = fields.Selection([('yes','Yes'), ('no','No'), ('maybe','Maybe')], 
 												string="Do they want solar?")
-
-	# Barrier to taking solar? 

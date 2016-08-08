@@ -22,9 +22,9 @@
                 <group string="House Details">
                   <field name="nrg_customer_num_of_ppl"/>
                   <field name="nrg_customer_num_of_rooms"/>
+                  <field name="nrg_customer_energy_source"/>
                   <field name="nrg_customer_energy_spending"/>
                   <field name="nrg_customer_cooking_tech"/>
-                  <field name="nrg_customer_cooking_fuel"/>
                   <field name="nrg_customer_want_solar"/>
                </group>
               </group>
@@ -32,7 +32,7 @@
             <group string="Current Appliances">
               <field name="nrg_customer_appliances_fan"/>
               <field name="nrg_customer_appliances_tv"/>
-              <field name="nrg_customer_appliances_radio"/>
+              <field name="nrg_customer_appliances_lights"/>
             </group>
           </page>
         </xpath>
