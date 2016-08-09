@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+	<record model="calendar.event" id="nrg_demo_templ_calendar">
+		    <field name="name">Demo Check-up After 2 weeks</field>
+            <!--<field eval="1" name="active"/>-->
+            <field name="user_id" ref="base.user_root"/> 
+            <!-- <field name="partner_ids" eval="[(6,0,[ref('sale.partner_id.id')])]"/-->          
+            <!-- <field name="categ_ids" eval="[(6,0,[ref('categ_meet1'), ref('categ_meet2')])]"/-->
+            <field name="start" eval="(datetime.datetime.now() + timedelta(weeks=2)).strftime('%Y-%m-%d')" />
+            <field name="stop" eval="(datetime.datetime.now() + timedelta(weeks=2)).strftime('%Y-%m-%d')" />
+            <!--<field eval="8.5" name="duration"/>-->
+            <!--<field eval="0" name="allday"/>-->
+            <field name="state">draft</field>
+            <!--field name="nrg_demo_cal_is_template" eval="True"/-->
+        </record>
+    </data>
+</openerp>

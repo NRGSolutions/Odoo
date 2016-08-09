@@ -12,6 +12,9 @@
 				<xpath expr="//notebook" position="before">
 					<group string="[NRG] Demo Process">
 						<field name="nrg_demo_is_demo" />
+						<!-- Two lines below added by Sejin Park on 08/02/2016 -->
+						<field name="nrg_demo_template_calendar"
+							   attrs="{'invisible': [('nrg_demo_is_demo', '=', False)], 'required': [('nrg_demo_is_demo', '=', True)]}" />
 					</group>
 				</xpath>
 			</field>
