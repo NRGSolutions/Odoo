@@ -7,7 +7,7 @@ class ExtendedPartner(models.Model):
     nrg_village = fields.Many2one('nrg.village', 'Village')
     nrg_village_is_keyperson = fields.Boolean('Key Person')
     #Useless because we can find the village from where the customer is
-    #nrg_village_customer_number = fields.Integer() --> Replace Integer by Char if we want to be able to find people with a portion of their customer number
+    nrg_village_customer_number = fields.Integer() #--> Replace Integer by Char if we want to be able to find people with a portion of their customer number
 
     nrg_village_image1 = fields.Binary('Image1')
     nrg_village_image2 = fields.Binary('Image2')
