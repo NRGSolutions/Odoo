@@ -10,18 +10,39 @@
 			<field name="arch" type="xml">
 				<xpath expr="//notebook" position="before">
 					<group string="[NRG] After-Sales Service">
-						<field name="nrg_asp_sale_order" 
-							   attrs="{'invisible': [('nrg_asp_is_in_template', '=', True)], 'readonly': [('id', '>', 0)]}" /> 
-						<field name="nrg_asp_incharge" 
-							   attrs="{'invisible': [('nrg_asp_is_in_template', '=', False)]}" />
-						<field name="nrg_asp_deadline_days" 
-							   attrs="{'invisible': [('nrg_asp_is_in_template', '=', False)]}" />
-						<field name="nrg_asp_is_in_template" invisible="1" />
-						<field name="id" invisible="1" />
-						<field name="nrg_asp_delay" /> 
-						<field name="stageId" /> 
+						<group name="group_left">
+							<field name="nrg_asp_sale_order" 
+								   attrs="{'invisible': [('nrg_asp_is_in_template', '=', True)], 'readonly': [('id', '>', 0)]}" /> 
+							<field name="nrg_asp_incharge" 
+								   attrs="{'invisible': [('nrg_asp_is_in_template', '=', False)]}" />
+							<field name="nrg_asp_deadline_days" 
+								   attrs="{'invisible': [('nrg_asp_is_in_template', '=', False)]}" />
+							<field name="nrg_asp_is_in_template" invisible="1" />
+							<field name="id" invisible="1" />
+							<field name="nrg_asp_delay" /> 
+						</group>
+						<group name="group_right">
+							<field name="nrg_asp_is_late" /> 
+							<field name="nrg_asp_is_reactive" />					
+						</group>
 					</group>
 				</xpath>
+			<notebook>
+			    <page string="After Sales Reactive" attrs="{'invisible': [('nrg_asp_is_reactive', '=', False)]}">
+				<group>
+				    <group name="group_left">
+					<field name="nrg_asp_problem_description"/> 				
+					<field name="nrg_asp_solution_description"/>
+				    </group>
+				    <group name="group_right">
+					<field name="nrg_asp_problem_identification"/>
+				    </group>
+				</group>
+				<group>
+				    <field name="notes" />
+				</group>
+			    </page>
+			</notebook>
 			</field>
 		</record>
 		

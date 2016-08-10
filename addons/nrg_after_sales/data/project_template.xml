@@ -21,22 +21,64 @@
 			<field name="nrg_asp_incharge">technician</field>
 		</record>
 		<!-- Scheduled maintenance -->
-		<record model="project.task" id="nrg_asp_templ_task_schdl_3d">
-			<field name="name">After 3 Days</field>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_1w">
+			<field name="name">Call After 1 Week</field>
 			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
-			<field name="nrg_asp_deadline_days">6</field>
+			<field name="nrg_asp_deadline_days">7</field>
 			<field name="nrg_asp_incharge">admin</field>
 		</record>
-		<record model="project.task" id="nrg_asp_templ_task_schdl_1w">
-			<field name="name">After 1 Weeks</field>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_2w">
+			<field name="name">Call After 2 Weeks</field>
 			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
-			<field name="nrg_asp_deadline_days">10</field>
+			<field name="nrg_asp_deadline_days">14</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_3w">
+			<field name="name">Call After 3 Weeks</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">21</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_2m">
+			<field name="name">Call After 2 Months</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">61</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_4m">
+			<field name="name">Call After 4 Months</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">122</field>
 			<field name="nrg_asp_incharge">admin</field>
 		</record>
 		<record model="project.task" id="nrg_asp_templ_task_schdl_1m">
-			<field name="name">After 1 Months</field>
+			<field name="name">Visit After 1 Month</field>
 			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
-			<field name="nrg_asp_deadline_days">33</field>
+			<field name="nrg_asp_deadline_days">31</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_6m">
+			<field name="name">Visit After 6 Months</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">183</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_12m">
+			<field name="name">Visit After 12 Months</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">366</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_18m">
+			<field name="name">Visit After 18 Months</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">549</field>
+			<field name="nrg_asp_incharge">admin</field>
+		</record>
+		<record model="project.task" id="nrg_asp_templ_task_schdl_24m">
+			<field name="name">Visit After 24 Months</field>
+			<field name="stage_id" ref="nrg_asp_templ_task_type_todo" />
+			<field name="nrg_asp_deadline_days">732</field>
 			<field name="nrg_asp_incharge">admin</field>
 		</record>
 		
@@ -47,9 +89,16 @@
 			<field name="task_ids" 
 				   eval="[(6,0,[
 				   		ref('nrg_asp_templ_task_install'),
-				   		ref('nrg_asp_templ_task_schdl_3d'),
 				   		ref('nrg_asp_templ_task_schdl_1w'),
+				   		ref('nrg_asp_templ_task_schdl_2w'),
+				   		ref('nrg_asp_templ_task_schdl_3w'),
+				   		ref('nrg_asp_templ_task_schdl_2m'),
+				   		ref('nrg_asp_templ_task_schdl_4m'),
 				   		ref('nrg_asp_templ_task_schdl_1m'),
+				   		ref('nrg_asp_templ_task_schdl_6m'),
+				   		ref('nrg_asp_templ_task_schdl_12m'),
+				   		ref('nrg_asp_templ_task_schdl_18m'),
+				   		ref('nrg_asp_templ_task_schdl_24m'),
 				   ])]" />
 			<field name="type_ids"
 				   eval="[(6,0,[
